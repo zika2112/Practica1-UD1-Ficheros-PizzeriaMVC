@@ -1,8 +1,33 @@
 package com.caramos.pizzeriamvc.base;
 
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.List;
 
 public class Platillo {
+
+    public static final List<String> SALSAS_DISPONIBLES = Arrays.asList(
+            "margherita",
+            "pesto",
+            "biancca",
+            "4 formaggi"
+    );
+
+    public static final List<String> INGREDIENTES_DISPONIBLES = Arrays.asList(
+            "queso",
+            "jamon",
+            "pepperoni",
+            "cebolla",
+            "anchoas",
+            "aceitunas negras",
+            "maiz",
+            "speck",
+            "albahaca",
+            "salami picante"
+    );
+
+
+
 
     private String nombre;
     private String ingredientes;
@@ -10,6 +35,7 @@ public class Platillo {
     private String tamaño;
     private double precio;
     private LocalDate fechaDelPedido;
+
 
     public Platillo(){
 
