@@ -17,8 +17,8 @@ public class Calzone extends Platillo{
     public Calzone() {
     }
 
-    public Calzone(String nombre, String ingredientes, String salsaBase, String tamaño, double precio, LocalDate fechaDelPedido, String forma) {
-        super(nombre, ingredientes, salsaBase, tamaño, precio, fechaDelPedido);
+    public Calzone(int id, String nombre, String ingrediente, String salsaBase, String size, double precio, LocalDate fechaDelPedido, String forma) {
+        super(id, nombre, ingrediente, salsaBase, size, precio, fechaDelPedido);
         this.forma = forma;
     }
 
@@ -33,7 +33,7 @@ public class Calzone extends Platillo{
     @Override
     public String toString() {
         return "Calzone{" +
-                " Nombre= "+getNombre()+" Ingredientes = "+getIngredientes()+" Salsa base = "+getSalsaBase()+
+                " id = "+getId()+" Nombre= "+getNombre()+" Ingrediente = "+getIngrediente()+" Tamaño = "+getSize()+" Salsa base = "+getSalsaBase()+
                 " Precio = "+getPrecio()+" Pedido hecho el = "+getFechaDelPedido()+" tipoMasa = " + forma  +
                 '}';
     }

@@ -16,9 +16,10 @@ public class Ventana {
     private JButton importarPedidosButton;
     private JButton exportarPedidosButton;
     private JList list1;
+    private JTextField Idtext;
+    private JTextField Nombretext;
 
     public JFrame frame;
-    //para poner los datos de vehiculos en la lista
     public DefaultListModel<Platillo> dlmPlatillo;
 
 

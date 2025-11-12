@@ -13,14 +13,13 @@ public class Pizza extends Platillo{
             "rellena de queso ricotta"
     );
 
-
     private String tipoMasa;
 
     public Pizza() {
     }
 
-    public Pizza(String nombre, String ingredientes, String salsaBase, String tamaño, double precio, LocalDate fechaDelPedido, String tipoMasa) {
-        super(nombre, ingredientes, salsaBase, tamaño, precio, fechaDelPedido);
+    public Pizza(int id, String nombre, String ingrediente, String salsaBase, String size, double precio, LocalDate fechaDelPedido, String tipoMasa) {
+        super(id, nombre, ingrediente, salsaBase, size, precio, fechaDelPedido);
         this.tipoMasa = tipoMasa;
     }
 
@@ -35,7 +34,7 @@ public class Pizza extends Platillo{
     @Override
     public String toString() {
         return "Pizza{" +
-                " Nombre= "+getNombre()+" Ingredientes = "+getIngredientes()+" Salsa base = "+getSalsaBase()+
+                " id = "+getId()+" Nombre = "+getNombre()+" Ingrediente = "+getIngrediente()+" Tamaño = "+getSize()+" Salsa base = "+getSalsaBase()+
                 " Precio = "+getPrecio()+" Pedido hecho el = "+getFechaDelPedido()+" tipoMasa = " + tipoMasa  +
                 '}';
     }

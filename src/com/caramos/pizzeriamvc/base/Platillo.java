@@ -25,27 +25,24 @@ public class Platillo {
             "albahaca",
             "salami picante"
     );
-
-
-
-
+    private int id;
     private String nombre;
-    private String ingredientes;
+    private String ingrediente;
     private String salsaBase;
-    private String tamaño;
+    private String size;
     private double precio;
     private LocalDate fechaDelPedido;
-
 
     public Platillo(){
 
     }
 
-    public Platillo(String nombre, String ingredientes, String salsaBase, String tamaño, double precio, LocalDate fechaDelPedido) {
+    public Platillo(int id,String nombre, String ingrediente, String salsaBase, String size, double precio, LocalDate fechaDelPedido) {
+        this.id = id;
         this.nombre = nombre;
-        this.ingredientes = ingredientes;
+        this.ingrediente = ingrediente;
         this.salsaBase = salsaBase;
-        this.tamaño = tamaño;
+        this.size = size;
         this.precio = precio;
         this.fechaDelPedido = fechaDelPedido;
     }
@@ -58,12 +55,12 @@ public class Platillo {
         this.nombre = nombre;
     }
 
-    public String getIngredientes() {
-        return ingredientes;
+    public String getIngrediente() {
+        return ingrediente;
     }
 
-    public void setIngredientes(String ingredientes) {
-        this.ingredientes = ingredientes;
+    public void setIngrediente(String ingrediente) {
+        this.ingrediente = ingrediente;
     }
 
     public String getSalsaBase() {
@@ -74,12 +71,12 @@ public class Platillo {
         this.salsaBase = salsaBase;
     }
 
-    public String getTamaño() {
-        return tamaño;
+    public String getSize() {
+        return size;
     }
 
-    public void setTamaño(String tamaño) {
-        this.tamaño = tamaño;
+    public void setSize(String tamaño) {
+        this.size = size;
     }
 
     public double getPrecio() {
@@ -96,5 +93,13 @@ public class Platillo {
 
     public void setFechaDelPedido(LocalDate fechaDelPedido) {
         this.fechaDelPedido = fechaDelPedido;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
