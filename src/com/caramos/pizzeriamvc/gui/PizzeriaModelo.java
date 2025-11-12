@@ -43,6 +43,15 @@ public class PizzeriaModelo {
         listaPlatillos.add(nuevoCalzone);
     }
 
+    public boolean existeId (int id) {
+        for (Platillo unPlatillo: listaPlatillos) {
+            if (unPlatillo.getId() == id) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     //public boolean existeIngrediente(String ingredientes) {
         //for (Platillo unPlatillo: listaPlatillos) {
             //if (unPlatillo.getIngredientes().equals(INGREDIENTES_DISPONIBLES)) {

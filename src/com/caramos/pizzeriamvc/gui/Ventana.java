@@ -1,30 +1,35 @@
 package com.caramos.pizzeriamvc.gui;
 
 import com.caramos.pizzeriamvc.base.Platillo;
+import com.github.lgooddatepicker.components.DatePicker;
 
 import javax.swing.*;
 
 public class Ventana {
     private JPanel panel1;
-    private JRadioButton pizzaRadioButton;
-    private JRadioButton calzoneRadioButton;
-    private JTextField TipoDeSalsatextField;
-    private JTextField IngredientestextField;
-    private JTextField TamañoProductotextField;
-    private JTextField PrecioProductotextField;
-    private JButton crearButton;
-    private JButton importarPedidosButton;
-    private JButton exportarPedidosButton;
-    private JList list1;
-    private JTextField Idtext;
-    private JTextField Nombretext;
+     JRadioButton pizzaRadioButton;
+     JRadioButton calzoneRadioButton;
+     JTextField tipoDeSalsatextField;
+     JTextField ingredientesTextField;
+     JTextField tamañoProductoTextField;
+     JTextField precioProductoTextField;
+     JButton crearButton;
+     JButton importarPedidosButton;
+     JButton exportarPedidosButton;
+     JList list1;
+     JTextField idText;
+     JTextField nombreText;
+     DatePicker fechaPedidoDatePicker;
+     JTextField tipoMasaFormatxt;
+     JLabel tipoDeMasaFormaLbl;
+     JLabel fechaParaElPedidoLabel;
 
     public JFrame frame;
     public DefaultListModel<Platillo> dlmPlatillo;
 
 
     public Ventana() {
-        frame = new JFrame("VehiculosMVC");
+        frame = new JFrame("PizzeriaMVC");
         frame.setContentPane(panel1);
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         frame.pack();
@@ -37,5 +42,7 @@ public class Ventana {
         dlmPlatillo=new DefaultListModel<Platillo>();
         list1.setModel(dlmPlatillo);
     }
+
+
 }
 
