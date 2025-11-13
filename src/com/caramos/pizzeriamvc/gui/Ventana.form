@@ -44,15 +44,6 @@
           <text value="Tipo de Producto"/>
         </properties>
       </component>
-      <component id="9a7dc" class="javax.swing.JRadioButton" binding="pizzaRadioButton" default-binding="true">
-        <constraints>
-          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-          <forms/>
-        </constraints>
-        <properties>
-          <text value="Pizza"/>
-        </properties>
-      </component>
       <component id="f6bcb" class="javax.swing.JRadioButton" binding="calzoneRadioButton" default-binding="true">
         <constraints>
           <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
@@ -249,6 +240,15 @@
         </constraints>
         <properties>
           <text value=""/>
+        </properties>
+      </component>
+      <component id="9a7dc" class="javax.swing.JRadioButton" binding="pizzaRadioButton" default-binding="true">
+        <constraints>
+          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <forms/>
+        </constraints>
+        <properties>
+          <text value="Pizza"/>
         </properties>
       </component>
     </children>
