@@ -64,8 +64,8 @@ public class PizzeriaControlador implements ActionListener, ListSelectionListene
 
 
     private void addActionListener(ActionListener listener) {
-        vista.importarPedidosButton.addActionListener(listener);
-        vista.exportarPedidosButton.addActionListener(listener);
+        vista.importarButton.addActionListener(listener);
+        vista.exportarButton.addActionListener(listener);
         vista.crearButton.addActionListener(listener);
         vista.pizzaRadioButton.addActionListener(listener);
         vista.calzoneRadioButton.addActionListener(listener);
@@ -99,11 +99,13 @@ public class PizzeriaControlador implements ActionListener, ListSelectionListene
     }
 
     private void guardarConfiguracion() throws IOException {
-        Properties configuracion=new Properties();
-        configuracion.setProperty("ultimaRutaExportada"
-                ,ultimaRutaExportada.getAbsolutePath());
-        configuracion.store(new PrintWriter("platillos.conf")
-                ,"Datos de los platillos");
+        Properties configuracion = new Properties();
+        if (ultimaRutaExportada != null) {
+            configuracion.setProperty("ultimaRutaExportada",
+                    ultimaRutaExportada.getAbsolutePath());
+        }
+        configuracion.store(new PrintWriter("platillos.conf"),
+                "Datos de los platillos");
     }
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -198,13 +200,15 @@ public class PizzeriaControlador implements ActionListener, ListSelectionListene
 
     @Override
     public void windowClosing(WindowEvent e) {
-        int resp= Util.mensajeConfirmacion("¿Desea cerrar la ventana?","Salir");
-        if (resp== JOptionPane.OK_OPTION) {
+        int resp = Util.mensajeConfirmacion("¿Desea cerrar la ventana?", "Salir");
+        if (resp == JOptionPane.OK_OPTION) {
             try {
                 guardarConfiguracion();
-                System.exit(0);
-            } catch (IOException ex) {
+            } catch (Exception ex) {
                 ex.printStackTrace();
+                 JOptionPane.showMessageDialog(null, "Error al guardar configuración");
+            } finally {
+                System.exit(0);
             }
         }
     }

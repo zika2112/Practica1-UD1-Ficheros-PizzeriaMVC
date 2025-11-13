@@ -105,22 +105,22 @@
           <text value="Crear"/>
         </properties>
       </component>
-      <component id="93041" class="javax.swing.JButton" binding="importarPedidosButton" default-binding="true">
+      <component id="93041" class="javax.swing.JButton" binding="importarButton">
         <constraints>
           <grid row="20" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
           <forms/>
         </constraints>
         <properties>
-          <text value="Importar Pedidos"/>
+          <text value="Importar"/>
         </properties>
       </component>
-      <component id="bfc23" class="javax.swing.JButton" binding="exportarPedidosButton" default-binding="true">
+      <component id="bfc23" class="javax.swing.JButton" binding="exportarButton">
         <constraints>
           <grid row="22" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
           <forms/>
         </constraints>
         <properties>
-          <text value="Exportar Pedidos"/>
+          <text value="Exportar"/>
         </properties>
       </component>
       <scrollpane id="74b25">
@@ -253,4 +253,10 @@
       </component>
     </children>
   </grid>
+  <buttonGroups>
+    <group name="buttonGroup1">
+      <member id="9a7dc"/>
+      <member id="f6bcb"/>
+    </group>
+  </buttonGroups>
 </form>

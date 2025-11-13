@@ -14,8 +14,8 @@ public class Ventana {
      JTextField tamañoProductoTextField;
      JTextField precioProductoTextField;
      JButton crearButton;
-     JButton importarPedidosButton;
-     JButton exportarPedidosButton;
+     JButton importarButton;
+     JButton exportarButton;
      JList list1;
      JTextField idText;
      JTextField nombreText;
