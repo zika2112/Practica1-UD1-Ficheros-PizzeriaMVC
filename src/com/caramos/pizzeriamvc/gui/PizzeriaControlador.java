@@ -1,5 +1,7 @@
 package com.caramos.pizzeriamvc.gui;
 
+import com.caramos.pizzeriamvc.base.Calzone;
+import com.caramos.pizzeriamvc.base.Pizza;
 import com.caramos.pizzeriamvc.base.Platillo;
 import com.caramos.pizzeriamvc.util.Util;
 import org.xml.sax.SAXException;
@@ -208,6 +210,27 @@ public class PizzeriaControlador implements ActionListener, ListSelectionListene
     }
 
     @Override
+    public void valueChanged(ListSelectionEvent e) {
+        if (e.getValueIsAdjusting()) {
+            Platillo platilloSeleccionado = (Platillo) vista.list1.getSelectedValue();
+            vista.idText.setText(String.valueOf(platilloSeleccionado.getId()));
+            vista.nombreText.setText(platilloSeleccionado.getNombre());
+            vista.ingredientesTextField.setText(platilloSeleccionado.getIngrediente());
+            vista.tipoDeSalsatextField.setText(platilloSeleccionado.getSalsaBase());
+            vista.tamañoProductoTextField.setText(platilloSeleccionado.getSize());
+            vista.precioProductoTextField.setText(String.valueOf(platilloSeleccionado.getPrecio()));
+            vista.fechaPedidoDatePicker.setText(String.valueOf(platilloSeleccionado.getFechaDelPedido()));
+            if (platilloSeleccionado instanceof Pizza) {
+                vista.pizzaRadioButton.doClick();
+                vista.tipoMasaFormatxt.setText(String.valueOf(((Pizza) platilloSeleccionado).getTipoMasa()));
+            } else {
+                vista.calzoneRadioButton.doClick();
+                vista.tipoMasaFormatxt.setText(String.valueOf(((Calzone)platilloSeleccionado).getForma()));
+            }
+        }
+    }
+
+    @Override
     public void windowOpened(WindowEvent e) {
 
     }
@@ -235,12 +258,6 @@ public class PizzeriaControlador implements ActionListener, ListSelectionListene
 
     @Override
     public void windowDeactivated(WindowEvent e) {
-
-    }
-
-
-    @Override
-    public void valueChanged(ListSelectionEvent e) {
 
     }
 }
