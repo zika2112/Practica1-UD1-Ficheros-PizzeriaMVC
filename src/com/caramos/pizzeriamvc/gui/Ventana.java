@@ -23,6 +23,7 @@ public class Ventana {
      JTextField tipoMasaFormatxt;
      JLabel tipoDeMasaFormaLbl;
      JLabel fechaParaElPedidoLabel;
+     JButton limpiarButton;
 
     public JFrame frame;
     public DefaultListModel<Platillo> dlmPlatillo;

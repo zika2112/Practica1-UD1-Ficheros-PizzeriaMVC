@@ -37,17 +37,38 @@ public class PizzeriaControlador implements ActionListener, ListSelectionListene
     }
 
     private boolean hayCamposVacios() {
-        if (vista.idText.getText().isEmpty() ||
-                vista.nombreText.getText().isEmpty() ||
-                vista.ingredientesTextField.getText().isEmpty() ||
-                vista.tipoDeSalsatextField.getText().isEmpty() ||
-                vista.tamañoProductoTextField.getText().isEmpty() ||
-                vista.precioProductoTextField.getText().isEmpty() ||
-                vista.fechaPedidoDatePicker.getText().isEmpty() ||
-                vista.tipoMasaFormatxt.getText().isEmpty()){
+        StringBuilder camposVacios = new StringBuilder();
 
+        if (vista.idText.getText().isEmpty()) {
+            camposVacios.append("\n- Id del platillo");
+        }
+        if (vista.nombreText.getText().isEmpty()) {
+            camposVacios.append("\n- Nombre");
+        }
+        if (vista.ingredientesTextField.getText().isEmpty()) {
+            camposVacios.append("\n- Ingredientes");
+        }
+        if (vista.tipoDeSalsatextField.getText().isEmpty()) {
+            camposVacios.append("\n- Tipo de salsa");
+        }
+        if (vista.tamañoProductoTextField.getText().isEmpty()) {
+            camposVacios.append("\n- Tamaño");
+        }
+        if (vista.precioProductoTextField.getText().isEmpty()) {
+            camposVacios.append("\n- Precio");
+        }
+        if (vista.fechaPedidoDatePicker.getText().isEmpty()) {
+            camposVacios.append("\n- Fecha para el Pedido");
+        }
+        if (vista.tipoMasaFormatxt.getText().isEmpty()) {
+            camposVacios.append("\n- Tipo de masa");
+        }
+
+        if (camposVacios.length() > 0) {
+            Util.mensajeError("Los siguientes campos están vacíos: " + camposVacios.toString());
             return true;
         }
+
         return false;
     }
 
@@ -69,6 +90,7 @@ public class PizzeriaControlador implements ActionListener, ListSelectionListene
         vista.crearButton.addActionListener(listener);
         vista.pizzaRadioButton.addActionListener(listener);
         vista.calzoneRadioButton.addActionListener(listener);
+        vista.limpiarButton.addActionListener(listener);
     }
 
     private void addWindowListener(WindowListener listener) {
@@ -114,20 +136,25 @@ public class PizzeriaControlador implements ActionListener, ListSelectionListene
         switch (actionCommand) {
             case "Crear":
                 if (hayCamposVacios()) {
-                    Util.mensajeError("Los siguientes campos estan vacios " +
-                            "\nId del platillo \n Nombre\nIngredientes\nTipo de salsa\nTamaño\nPrecio\n Fecha para el Pedido" +
-                            "\n"+vista.tipoDeMasaFormaLbl.getText());
                     break;
                 }
+
                 if (modelo.existeId(Integer.parseInt(vista.idText.getText()))) {
                     Util.mensajeError("Ya existe un platillo con este id" +
                             "\n" + vista.idText.getText());
                     break;
                 }
-                if (vista.pizzaRadioButton.isSelected()) {
-                    try {
-                        int id = Integer.parseInt(vista.idText.getText());
-                        double precio = Double.parseDouble(vista.precioProductoTextField.getText());
+
+                try {
+                    int id = Integer.parseInt(vista.idText.getText());
+                    double precio = Double.parseDouble(vista.precioProductoTextField.getText());
+
+                    if (id < 0 || precio < 0) {
+                        Util.mensajeError("El ID y el precio no pueden ser negativos");
+                        break;
+                    }
+
+                    if (vista.pizzaRadioButton.isSelected()) {
 
                         modelo.altaPizza(id, vista.nombreText.getText(),
                                 vista.ingredientesTextField.getText(),
@@ -136,13 +163,10 @@ public class PizzeriaControlador implements ActionListener, ListSelectionListene
                                 precio,
                                 vista.fechaPedidoDatePicker.getDate(),
                                 vista.tipoMasaFormatxt.getText());
-                    } catch (NumberFormatException err) {
-                        Util.mensajeError("El ID y el precio deben ser números válidos");
-                    }
-                } else {
-                    try {
-                        int id = Integer.parseInt(vista.idText.getText());
-                        double precio = Double.parseDouble(vista.precioProductoTextField.getText());
+                        limpiarCampos();
+                        refrescar();
+
+                    } else {
 
                         modelo.altaCalzone(id, vista.nombreText.getText(),
                                 vista.ingredientesTextField.getText(),
@@ -151,12 +175,15 @@ public class PizzeriaControlador implements ActionListener, ListSelectionListene
                                 precio,
                                 vista.fechaPedidoDatePicker.getDate(),
                                 vista.tipoMasaFormatxt.getText());
-                    } catch (NumberFormatException err) {
-                        Util.mensajeError("El ID y el precio deben ser números válidos");
+                        limpiarCampos();
+                        refrescar();
                     }
+
+                } catch (NumberFormatException err) {
+                    Util.mensajeError("El ID y el precio deben ser números válidos");
                 }
-                limpiarCampos();
                 refrescar();
+
                 break;
             case "Importar":
                 JFileChooser selectorFichero = Util.crearSelectorFichero(ultimaRutaExportada
@@ -194,6 +221,9 @@ public class PizzeriaControlador implements ActionListener, ListSelectionListene
                 break;
             case "Calzone":
                 vista.tipoDeMasaFormaLbl.setText("Forma");
+                break;
+            case "Limpiar":
+                limpiarCampos();
                 break;
         }
     }
