@@ -75,7 +75,7 @@ public class Platillo {
         return size;
     }
 
-    public void setSize(String tamaño) {
+    public void setSize(String size) {
         this.size = size;
     }
 

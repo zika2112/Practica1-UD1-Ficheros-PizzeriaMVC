@@ -190,34 +190,33 @@ public class PizzeriaModelo {
 
         NodeList listaElementos = documento.getElementsByTagName("*");
 
-        for (int i = 0; i < listaElementos.getLength(); i++) {
-            Element nodoPlatillo = (Element) listaElementos.item(i);
+        for (int i=0;i<listaElementos.getLength();i++) {
+            Element nodoPlatillo= (Element) listaElementos.item(i);
 
             if (nodoPlatillo.getTagName().equals("Pizza")) {
                 nuevaPizza = new Pizza();
 
-
-                nuevaPizza.setId(Integer.parseInt(nodoPlatillo.getElementsByTagName("id").item(0).getTextContent()));
-                nuevaPizza.setNombre(nodoPlatillo.getElementsByTagName("nombre").item(0).getTextContent());
-                nuevaPizza.setIngrediente(nodoPlatillo.getElementsByTagName("ingrediente").item(0).getTextContent());
-                nuevaPizza.setSalsaBase(nodoPlatillo.getElementsByTagName("salsaBase").item(0).getTextContent());
-                nuevaPizza.setSize(nodoPlatillo.getElementsByTagName("size").item(0).getTextContent());
-                nuevaPizza.setPrecio(Double.parseDouble(nodoPlatillo.getElementsByTagName("precio").item(0).getTextContent()));
-                nuevaPizza.setFechaDelPedido(LocalDate.parse(nodoPlatillo.getElementsByTagName("fechaDelPedido").item(0).getTextContent()));
-                nuevaPizza.setTipoMasa(nodoPlatillo.getElementsByTagName("tipoMasa").item(0).getTextContent());
+                nuevaPizza.setId(Integer.parseInt(nodoPlatillo.getChildNodes().item(0).getTextContent()));
+                nuevaPizza.setNombre(nodoPlatillo.getChildNodes().item(1).getTextContent());
+                nuevaPizza.setIngrediente(nodoPlatillo.getChildNodes().item(2).getTextContent());
+                nuevaPizza.setSalsaBase(nodoPlatillo.getChildNodes().item(3).getTextContent());
+                nuevaPizza.setSize(nodoPlatillo.getChildNodes().item(4).getTextContent());
+                nuevaPizza.setPrecio(Double.parseDouble(nodoPlatillo.getChildNodes().item(5).getTextContent()));
+                nuevaPizza.setFechaDelPedido(LocalDate.parse(nodoPlatillo.getChildNodes().item(6).getTextContent()));
+                nuevaPizza.setTipoMasa(nodoPlatillo.getChildNodes().item(7).getTextContent());;
                 listaPlatillos.add(nuevaPizza);
 
-            } else if (nodoPlatillo.getTagName().equals("Calzone")) {  // AÑADIR else if
+            } else if (nodoPlatillo.getTagName().equals("Calzone")) {
                 nuevoCalzone = new Calzone();
 
-                nuevoCalzone.setId(Integer.parseInt(nodoPlatillo.getElementsByTagName("id").item(0).getTextContent()));
-                nuevoCalzone.setNombre(nodoPlatillo.getElementsByTagName("nombre").item(0).getTextContent());
-                nuevoCalzone.setIngrediente(nodoPlatillo.getElementsByTagName("ingrediente").item(0).getTextContent());
-                nuevoCalzone.setSalsaBase(nodoPlatillo.getElementsByTagName("salsaBase").item(0).getTextContent());
-                nuevoCalzone.setSize(nodoPlatillo.getElementsByTagName("size").item(0).getTextContent());
-                nuevoCalzone.setPrecio(Double.parseDouble(nodoPlatillo.getElementsByTagName("precio").item(0).getTextContent()));
-                nuevoCalzone.setFechaDelPedido(LocalDate.parse(nodoPlatillo.getElementsByTagName("fechaDelPedido").item(0).getTextContent()));
-                nuevoCalzone.setForma(nodoPlatillo.getElementsByTagName("forma").item(0).getTextContent());
+                nuevoCalzone.setId(Integer.parseInt(nodoPlatillo.getChildNodes().item(0).getTextContent()));
+                nuevoCalzone.setNombre(nodoPlatillo.getChildNodes().item(1).getTextContent());;
+                nuevoCalzone.setIngrediente(nodoPlatillo.getChildNodes().item(2).getTextContent());;
+                nuevoCalzone.setSalsaBase(nodoPlatillo.getChildNodes().item(3).getTextContent());;
+                nuevoCalzone.setSize(nodoPlatillo.getChildNodes().item(4).getTextContent());;
+                nuevoCalzone.setPrecio(Double.parseDouble(nodoPlatillo.getChildNodes().item(5).getTextContent()));
+                nuevoCalzone.setFechaDelPedido(LocalDate.parse(nodoPlatillo.getChildNodes().item(6).getTextContent()));
+                nuevoCalzone.setForma(nodoPlatillo.getChildNodes().item(7).getTextContent());
                 listaPlatillos.add(nuevoCalzone);
             }
         }
