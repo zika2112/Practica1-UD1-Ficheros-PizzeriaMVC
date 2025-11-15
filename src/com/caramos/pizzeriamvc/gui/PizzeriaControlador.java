@@ -45,13 +45,13 @@ public class PizzeriaControlador implements ActionListener, ListSelectionListene
         if (vista.nombreText.getText().isEmpty()) {
             camposVacios.append("\n- Nombre");
         }
-        if (vista.ingredientesTextField.getText().isEmpty()) {
+        if (vista.listaIngredientesSeleccionados.getModel().getSize() == 0) {
             camposVacios.append("\n- Ingredientes");
         }
-        if (vista.tipoDeSalsatextField.getText().isEmpty()) {
+        if (vista.tipoDeSalsatextField.getSelectedItem() == null) {
             camposVacios.append("\n- Tipo de salsa");
         }
-        if (vista.tamañoProductoTextField.getText().isEmpty()) {
+        if (vista.sizeProductoTextField.getText().isEmpty()) {
             camposVacios.append("\n- Tamaño");
         }
         if (vista.precioProductoTextField.getText().isEmpty()) {
@@ -75,9 +75,10 @@ public class PizzeriaControlador implements ActionListener, ListSelectionListene
     private void limpiarCampos() {
         vista.idText.setText(null);
         vista.nombreText.setText(null);
-        vista.ingredientesTextField.setText(null);
-        vista.tipoDeSalsatextField.setText(null);
-        vista.tamañoProductoTextField.setText(null);
+        vista.dlmIngredientes.clear();
+        vista.ingredientesComboBox.setSelectedIndex(-1);
+        vista.tipoDeSalsatextField.setSelectedIndex(-1);
+        vista.sizeProductoTextField.setText(null);
         vista.precioProductoTextField.setText(null);
         vista.fechaPedidoDatePicker.setText(null);
         vista.tipoMasaFormatxt.setText(null);
@@ -91,6 +92,8 @@ public class PizzeriaControlador implements ActionListener, ListSelectionListene
         vista.pizzaRadioButton.addActionListener(listener);
         vista.calzoneRadioButton.addActionListener(listener);
         vista.limpiarButton.addActionListener(listener);
+        vista.agregarIngrediente.addActionListener(listener);
+        vista.eliminarIngrediente.addActionListener(listener);
     }
 
     private void addWindowListener(WindowListener listener) {
@@ -157,9 +160,9 @@ public class PizzeriaControlador implements ActionListener, ListSelectionListene
                     if (vista.pizzaRadioButton.isSelected()) {
 
                         modelo.altaPizza(id, vista.nombreText.getText(),
-                                vista.ingredientesTextField.getText(),
-                                vista.tipoDeSalsatextField.getText(),
-                                vista.tamañoProductoTextField.getText(),
+                                modelo.convertirListaIngredientesATexto(vista.listaIngredientesSeleccionados.getModel()),
+                                (String) vista.tipoDeSalsatextField.getSelectedItem(),
+                                vista.sizeProductoTextField.getText(),
                                 precio,
                                 vista.fechaPedidoDatePicker.getDate(),
                                 vista.tipoMasaFormatxt.getText());
@@ -169,9 +172,9 @@ public class PizzeriaControlador implements ActionListener, ListSelectionListene
                     } else {
 
                         modelo.altaCalzone(id, vista.nombreText.getText(),
-                                vista.ingredientesTextField.getText(),
-                                vista.tipoDeSalsatextField.getText(),
-                                vista.tamañoProductoTextField.getText(),
+                                modelo.convertirListaIngredientesATexto(vista.listaIngredientesSeleccionados.getModel()),
+                                (String) vista.tipoDeSalsatextField.getSelectedItem(),
+                                vista.sizeProductoTextField.getText(),
                                 precio,
                                 vista.fechaPedidoDatePicker.getDate(),
                                 vista.tipoMasaFormatxt.getText());
@@ -222,8 +225,20 @@ public class PizzeriaControlador implements ActionListener, ListSelectionListene
             case "Calzone":
                 vista.tipoDeMasaFormaLbl.setText("Forma");
                 break;
-            case "Limpiar":
-                limpiarCampos();
+            case "Agregar Ingrediente":
+                if (vista.ingredientesComboBox.getSelectedItem() != null) {
+                    String ingredienteSeleccionado = (String) vista.ingredientesComboBox.getSelectedItem();
+
+                    if (!vista.dlmIngredientes.contains(ingredienteSeleccionado)) {
+                        vista.dlmIngredientes.addElement(ingredienteSeleccionado);
+                    }
+                }
+                break;
+
+            case "Eliminar Ingrediente":
+                if (vista.listaIngredientesSeleccionados.getSelectedValue() != null) {
+                    vista.dlmIngredientes.removeElement(vista.listaIngredientesSeleccionados.getSelectedValue());
+                }
                 break;
         }
     }
@@ -249,9 +264,16 @@ public class PizzeriaControlador implements ActionListener, ListSelectionListene
             Platillo platilloSeleccionado = (Platillo) vista.list1.getSelectedValue();
             vista.idText.setText(String.valueOf(platilloSeleccionado.getId()));
             vista.nombreText.setText(platilloSeleccionado.getNombre());
-            vista.ingredientesTextField.setText(platilloSeleccionado.getIngrediente());
-            vista.tipoDeSalsatextField.setText(platilloSeleccionado.getSalsaBase());
-            vista.tamañoProductoTextField.setText(platilloSeleccionado.getSize());
+            String ingredientesTexto = platilloSeleccionado.getIngrediente();
+            vista.dlmIngredientes.clear();
+            if (ingredientesTexto != null && !ingredientesTexto.isEmpty()) {
+                String[] ingredientesArray = ingredientesTexto.split(", ");
+                for (String ingrediente : ingredientesArray) {
+                    vista.dlmIngredientes.addElement(ingrediente.trim());
+                }
+            }
+            vista.tipoDeSalsatextField.setSelectedItem(platilloSeleccionado.getSalsaBase());
+            vista.sizeProductoTextField.setText(platilloSeleccionado.getSize());
             vista.precioProductoTextField.setText(String.valueOf(platilloSeleccionado.getPrecio()));
             vista.fechaPedidoDatePicker.setText(String.valueOf(platilloSeleccionado.getFechaDelPedido()));
             if (platilloSeleccionado instanceof Pizza) {

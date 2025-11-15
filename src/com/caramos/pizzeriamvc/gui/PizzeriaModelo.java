@@ -6,6 +6,7 @@ import com.caramos.pizzeriamvc.base.Platillo;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
+import javax.swing.*;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -17,9 +18,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import static com.caramos.pizzeriamvc.base.Calzone.FORMAS_DISPONIBLES;
-import static com.caramos.pizzeriamvc.base.Pizza.TIPOS_MASA_DISPONIBLES;
-import static com.caramos.pizzeriamvc.base.Platillo.*;
+
 
 public class PizzeriaModelo {
 
@@ -55,38 +54,19 @@ public class PizzeriaModelo {
         }
         return false;
     }
+    public String convertirListaIngredientesATexto(ListModel<String> modeloLista) {
+        StringBuilder ingredientes = new StringBuilder();
 
-    //public boolean existeIngrediente(String ingredientes) {
-        //for (Platillo unPlatillo: listaPlatillos) {
-            //if (unPlatillo.getIngredientes().equals(INGREDIENTES_DISPONIBLES)) {
-                //return true;
-                //}
-            //}
-        //return false;
-        //}
-    //public boolean existeSalsa(String salsa) {
-        // for (Platillo unPlatillo: listaPlatillos) {
-            //         if (unPlatillo.getSalsaBase().equals(SALSAS_DISPONIBLES)) {
-                //return true;
-                //}
-            //}
-        //return false;
-        //}
-    //public boolean existeForma(String forma) {
-               //    if (unPlatillo.getNombre().equals("pizza")) {
-                //         return true;
-                //    }
-            //  }
-        //  return false;
-        // }
-    // public boolean existeTipoDeMasa(String tipoMasa) {
-        //  for (Platillo unPlatillo: listaPlatillos) {
-            //     if (unPlatillo.getIngredientes().equals(TIPOS_MASA_DISPONIBLES)) {
-                //          return true;
-                //      }
-            //   }
-        //    return false;
-   // }
+        for (int i = 0; i < modeloLista.getSize(); i++) {
+            ingredientes.append(modeloLista.getElementAt(i));
+            if (i < modeloLista.getSize() - 1) {
+                ingredientes.append(", ");
+            }
+        }
+
+        return ingredientes.toString();
+    }
+
     public void exportarXML(File fichero) throws ParserConfigurationException, TransformerException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
