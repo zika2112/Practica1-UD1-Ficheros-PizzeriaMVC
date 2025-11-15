@@ -219,6 +219,9 @@ public class PizzeriaControlador implements ActionListener, ListSelectionListene
                     }
                 }
                 break;
+            case "Limpiar":
+                limpiarCampos();
+                break;
             case "Pizza":
                 vista.tipoDeMasaFormaLbl.setText("Tipo masa");
                 break;
@@ -235,7 +238,7 @@ public class PizzeriaControlador implements ActionListener, ListSelectionListene
                 }
                 break;
 
-            case "Eliminar Ingrediente":
+            case "Quitar Ingrediente":
                 if (vista.listaIngredientesSeleccionados.getSelectedValue() != null) {
                     vista.dlmIngredientes.removeElement(vista.listaIngredientesSeleccionados.getSelectedValue());
                 }
