@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-
+// se modificaron el exportar e importar y se agrega una manera de convertir la selccion del combobox a texto
 
 public class PizzeriaModelo {
 

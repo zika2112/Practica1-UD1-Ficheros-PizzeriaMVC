@@ -21,6 +21,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Properties;
 
+// Se modificaron las clases hayCamposVacios,limpiarCampos,addActionListener, se agregaron opciones nuevas en el switch
+// y tambien cerrar la ventana y los valueChange
+
 public class PizzeriaControlador implements ActionListener, ListSelectionListener, WindowListener {
 
     private Ventana vista;

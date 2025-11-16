@@ -1,17 +1,11 @@
 package com.caramos.pizzeriamvc.base;
 
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.List;
+
 
 public class Calzone extends Platillo{
 
-    public static final List<String> FORMAS_DISPONIBLES = Arrays.asList(
-            "normal",
-            "estrella",
-            "cuadrada",
-            "personalizado"
-    );
+
     private String forma;
 
     public Calzone() {

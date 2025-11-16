@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Platillo {
-
+ // listas estaticas para la selecciones de los combobox
     public static final List<String> SALSAS_DISPONIBLES = Arrays.asList(
             "margherita",
             "pesto",
@@ -23,7 +23,8 @@ public class Platillo {
             "maiz",
             "speck",
             "albahaca",
-            "salami picante"
+            "salami picante",
+            "queso gorgonzola"
     );
     private int id;
     private String nombre;

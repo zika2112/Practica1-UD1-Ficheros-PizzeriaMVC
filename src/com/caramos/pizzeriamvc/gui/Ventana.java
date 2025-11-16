@@ -6,6 +6,9 @@ import com.github.lgooddatepicker.components.DatePicker;
 import javax.swing.*;
 import java.awt.*;
 
+// Las modificaciones hechas fueron, se agregaron iconos a la app y un fondo adaptable mediante la modificacion de la funcion paint content
+// y dos listas por defecto para se iniciaron para poner en los combobox de ingreidentes y salsas
+
 public class Ventana {
     private JPanel panel1;
      JRadioButton pizzaRadioButton;
@@ -34,8 +37,8 @@ public class Ventana {
     public DefaultListModel<Platillo> dlmPlatillo;
     public DefaultListModel<String> dlmIngredientes;
 
-    ImageIcon img = new ImageIcon("food.png");
-    ImageIcon background = new ImageIcon("fondo.png");
+    ImageIcon img = new ImageIcon("images/food.png");
+    ImageIcon background = new ImageIcon("images/fondo.png");
 
     JPanel backgroundPanel = new JPanel() {
         @Override

@@ -1,17 +1,11 @@
 package com.caramos.pizzeriamvc.base;
 
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.List;
+
 
 public class Pizza extends Platillo{
 
-    public static final List<String> TIPOS_MASA_DISPONIBLES = Arrays.asList(
-            "fina",
-            "gruesa",
-            "rellena de queso",
-            "rellena de queso ricotta"
-    );
+
 
     private String tipoMasa;
 
